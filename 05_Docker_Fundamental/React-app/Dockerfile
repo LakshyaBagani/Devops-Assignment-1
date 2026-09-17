@@ -1,6 +1,12 @@
-FROM node:20
+# Stage 1: build the React app with Vite
+FROM node:20-alpine AS build
 WORKDIR /app
-COPY . .
+COPY package.json ./
 RUN npm install
-EXPOSE 5173
-CMD ["npx", "vite", "--host", "0.0.0.0"]
+COPY . .
+RUN npm run build
+
+# Stage 2: serve the static build with Nginx
+FROM nginx:alpine
+COPY --from=build /app/dist /usr/share/nginx/html
+EXPOSE 80
