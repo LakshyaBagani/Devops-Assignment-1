@@ -143,6 +143,26 @@ performance_schema
 sys
 ```
 
+### Screenshots
+
+The screenshots were taken in a second run of the same commands, so container IDs differ from the text output above.
+
+Networks created:
+
+![docker networks](screenshots/dn-01-networks.png)
+
+Containers, with `backend` on two networks:
+
+![containers](screenshots/dn-02-containers.png)
+
+Ping tests (frontend → database fails as expected):
+
+![ping connectivity](screenshots/dn-03-connectivity-ping.png)
+
+HTTP, MySQL port and isolation tests:
+
+![port connectivity](screenshots/dn-04-connectivity-ports.png)
+
 ### Result
 
 | From → To | Result | Why |
@@ -216,6 +236,10 @@ curl exit code: 7
 
 From the macOS terminal the same URL is refused. On macOS (and Windows) Docker runs inside a small Linux virtual machine, so with `--network host` the "host" is that **Linux VM, not my Mac**. That is why I tested from a second container that also uses the host network. On a real Linux machine `curl http://localhost:80` works directly from the terminal and the browser. Newer Docker Desktop versions also have an optional "Enable host networking" setting that forwards these ports to the Mac.
 
+### Screenshot
+
+![host network](screenshots/dn-05-host-network.png)
+
 ### What I understood
 
 - `--network host` removes network isolation. There is no separate container IP, no NAT, and `-p` is ignored.
@@ -254,6 +278,24 @@ $ docker ps --filter name=bind-nginx --format "table {{.Names}}	{{.Status}}	{{.P
 NAMES        STATUS         PORTS
 bind-nginx   Up 4 seconds   0.0.0.0:9090->80/tcp, [::]:9090->80/tcp
 ```
+
+### Screenshots
+
+Container started with the bind mount:
+
+![bind mount run](screenshots/dn-06-bind-mount-run.png)
+
+Browser at `http://localhost:9090` before the edit:
+
+![browser before](screenshots/dn-07-browser-before.png)
+
+File edited on the laptop, container not restarted:
+
+![bind mount edit](screenshots/dn-08-bind-mount-edit.png)
+
+Browser after the edit:
+
+![browser after](screenshots/dn-09-browser-after.png)
 
 ### What I understood
 

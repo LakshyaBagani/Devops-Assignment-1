@@ -286,3 +286,34 @@ daemonset.apps "node-logging-agent" deleted from default namespace
 | `Running` but `0/1 READY` | Readiness probe failing | Probe path/port, application logs |
 | `Completed` | Container finished with exit code 0 | Normal for Jobs |
 | `Terminating` | Being shut down (grace period 30s by default) | – |
+
+---
+
+## Screenshots
+
+These screenshots were taken in a second run of the same labs, so Pod names, IPs and ages differ from the text output above.
+
+**Bare Pod: created, deleted, not re-created**
+
+![k9-01-pod](screenshots/k9-01-pod.png)
+
+**ReplicaSet: self-healing after a Pod delete, then scaling to 5**
+
+![k9-02-replicaset](screenshots/k9-02-replicaset.png)
+
+**Deployment v1: Deployment → ReplicaSet → Pods**
+
+![k9-03-deployment-v1](screenshots/k9-03-deployment-v1.png)
+
+**Rolling update to v2, history, and rollback**
+
+![k9-04-rolling-update-rollback](screenshots/k9-04-rolling-update-rollback.png)
+
+**Broken image: `ImagePullBackOff` while the old Pods keep running, then rollback**
+
+![k9-05-broken-image](screenshots/k9-05-broken-image.png)
+
+**DaemonSet and the control-plane taint**
+
+![k9-06-daemonset](screenshots/k9-06-daemonset.png)
+

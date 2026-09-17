@@ -279,3 +279,34 @@ endpointslice.discovery.k8s.io/broken-backend-service-qxkhx     IPv4          <u
 kubectl delete -f manifests/01-clusterip -f manifests/02-nodeport -f manifests/03-loadbalancer \
                -f manifests/04-externalname -f manifests/05-headless -f manifests/empty-endpoints.yaml
 ```
+
+---
+
+## Screenshots
+
+These screenshots were taken in a second run of the same labs, so Pod names, IPs and ages differ from the text output above.
+
+**ClusterIP Service and its EndpointSlice**
+
+![k10-01-clusterip](screenshots/k10-01-clusterip.png)
+
+**Access by service name and FQDN, CoreDNS lookup, `resolv.conf`**
+
+![k10-02-clusterip-dns](screenshots/k10-02-clusterip-dns.png)
+
+**NodePort 30080 answering on the nodes**
+
+![k10-03-nodeport](screenshots/k10-03-nodeport.png)
+
+**LoadBalancer stays `<pending>` locally, ExternalName returns a CNAME**
+
+![k10-04-loadbalancer-externalname](screenshots/k10-04-loadbalancer-externalname.png)
+
+**Headless Service: DNS returns Pod IPs, per-Pod DNS for the StatefulSet**
+
+![k10-05-headless](screenshots/k10-05-headless.png)
+
+**Troubleshooting: selector mismatch gives empty endpoints**
+
+![k10-06-empty-endpoints](screenshots/k10-06-empty-endpoints.png)
+

@@ -267,3 +267,34 @@ HTTP 404
 kubectl delete -f manifests/
 kubectl delete configmap cli-config
 ```
+
+---
+
+## Screenshots
+
+These screenshots were taken in a second run of the same labs, so Pod names, IPs and ages differ from the text output above.
+
+**Ingress controller running, ConfigMap applied**
+
+![k11-01-ingress-controller-configmap](screenshots/k11-01-ingress-controller-configmap.png)
+
+**Secret: describe hides values, base64 decode, and the `echo -n` gotcha**
+
+![k11-02-secret](screenshots/k11-02-secret.png)
+
+**Apps deployed, ConfigMap and Secret values visible as environment variables**
+
+![k11-03-apps-env](screenshots/k11-03-apps-env.png)
+
+**Ingress routing: `/` → frontend, `/api/` → backend, unknown host → 404**
+
+![k11-04-ingress](screenshots/k11-04-ingress.png)
+
+**Browser: `http://yatri.local:8081/` (frontend through the Ingress)**
+
+![k11-05-browser-frontend](screenshots/k11-05-browser-frontend.png)
+
+**Browser: `http://yatri.local:8081/api/` (backend showing ConfigMap and Secret values)**
+
+![k11-06-browser-api](screenshots/k11-06-browser-api.png)
+

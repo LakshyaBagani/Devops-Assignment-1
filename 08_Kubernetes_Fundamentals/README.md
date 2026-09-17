@@ -231,3 +231,26 @@ Deleting a namespace deletes everything inside it.
 | `kubectl run` / `kubectl create` | Quick imperative creation |
 | `kubectl explain <type.field>` | Field documentation |
 | `kubectl config get-contexts` | Which cluster am I talking to |
+
+---
+
+## Screenshots
+
+These screenshots were taken in a second run of the same labs, so Pod names, IPs and ages differ from the text output above.
+
+**Cluster info, nodes and namespaces**
+
+![k8-01-cluster](screenshots/k8-01-cluster.png)
+
+**Control-plane components running as Pods in `kube-system`**
+
+![k8-02-kube-system](screenshots/k8-02-kube-system.png)
+
+**First Pod: run, wait, inspect events, exec**
+
+![k8-03-first-pod](screenshots/k8-03-first-pod.png)
+
+**Namespaces**
+
+![k8-04-namespaces](screenshots/k8-04-namespaces.png)
+
